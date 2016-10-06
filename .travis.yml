@@ -11,10 +11,10 @@ script:
 
 after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
-      docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD -e none https://$REPO_PREFIX
-      LIST=$(find * -prune -type d)
+      docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD -e none https://$REPO_PREFIX;
+      LIST=$(find * -prune -type d);
       for i in $LIST; do
-        echo "Pushing $i..."
-        docker push $REPO_PREFIX/$i
-      done
+        echo "Pushing $i...";
+        docker push $REPO_PREFIX/$i;
+      done;
     fi
