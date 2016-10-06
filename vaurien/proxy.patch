@@ -1,0 +1,10 @@
+80a81
+>             conn.settimeout(self.timeout)
+164,166c165,167
+<             args = self.settings['args']
+<             behavior.update_settings(extract_settings(args, 'behavior',
+<                                                       behavior_name))
+---
+>             # args = self.settings['args']
+>             # behavior.update_settings(extract_settings(args, 'behavior',
+>             #                                           behavior_name))

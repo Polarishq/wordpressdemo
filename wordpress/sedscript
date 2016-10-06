@@ -1,0 +1,2 @@
+s/127.0.0.1/statsd.service.consul/
+s/define( 'STATSD_NAMESPACE', $namespace );/define( 'STATSD_NAMESPACE', "dockeritsidemo_web_1" );/
