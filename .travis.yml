@@ -1,20 +1,12 @@
 sudo: required
-
 services:
-  - docker
-
-before_script:
-  - 
-
+- docker
 script:
-  - bash build.sh
-
+- bash build.sh
 after_success:
-  - if [ "$TRAVIS_BRANCH" == "master" ]; then
-      docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD -e none https://$REPO_PREFIX;
-      LIST=$(find * -prune -type d);
-      for i in $LIST; do
-        echo "Pushing $i...";
-        docker push $REPO_PREFIX/$i;
-      done;
-    fi
+- if [ "$TRAVIS_BRANCH" == "master" ]; then docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+  -e none https://$REPO_PREFIX; LIST=$(find * -prune -type d); for i in $LIST; do
+  echo "Pushing $i..."; docker push $REPO_PREFIX/$i; done; fi
+notifications:
+  slack:
+    secure: LZAPvEN2f5ANWVS7iZwb0u+rnGSB8w6dQtE01gvYqPqYH46+3hIeDjT9/GG0SzgiRhU9W+EaOX23U3I0TJbuq8bOxd5I6PUiHyvPw7PgL4+V+mH6QEZNP+zmpoNt2R0FGBzmlq7q41LsJrCA9WRYW/31N8pf1riqCtIMIwt2mFot5ssRIcQoS+35v/mcdge/6vOIErX3ylNDW7F1Bj6y8VUJKA6cfvg1k9V37o9HEUllpzoEMOSZe/hlLMhw3ahZfSDdrIR2CpORzb9JVZjztB6iSsBUFCFww0Kz6kwii11oJt9oGLMZOrkA6KVc6Aa9FZJceWVzNWwAyCc7/f9BeWIJEFQzTVhIjSzjgONgtJNi6rGTn6etPUVmCmLdT0dK8K5MyVcqd7iPsTTFSrFA17+36h/iOLnLfr55ye041sS96Q+VE3NmuaTXMWc2qV7KY7vbO5ZLq9wQQ6agNRO3pGasiXI/OYbd95s9PWnh6hr+6M5kT/gT9ZVYeb0Sn5LIPqAVSvB35386587hHQqEIW4XRT50wpU6kKrebPf5eqtMmaaW5KEpAgpoaotaYfdtmqMLFTTpS7jv07nic1/acf638RbH3RFN9ZArv+KIzYYj9eNLC5uDJbf/25zpAl25zcDae5stg0uPf+/m+blewwnV3hDLNvH7A8oJT6vDm1E=
