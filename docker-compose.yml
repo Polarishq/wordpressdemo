@@ -1,13 +1,13 @@
 version: '2'
 services:
   mysql:
-    image: hub.docker.com/clintsharp/mysql:latest
+    image: clintsharp/mysql:latest
     environment:
       MYSQL_PASS: changeme
       STARTUP_SQL: /tmp/wordpress.sql
 
   vaurien:
-    image: hub.docker.com/clintsharp/vaurien:latest
+    image: clintsharp/vaurien:latest
     environment:
       HOST: mysql
       BACKENDPORT: 3306
@@ -19,7 +19,7 @@ services:
     restart: on-failure
 
   web:
-    image: hub.docker.com/clintsharp/vaurien:latest
+    image: clintsharp/vaurien:latest
     expose:
       - "8081"
       - "80"
@@ -31,7 +31,7 @@ services:
     restart: on-failure
 
   wordpress:
-    image: hub.docker.com/clintsharp/wordpress:latest
+    image: clintsharp/wordpress:latest
     ports:
       - "8080:80"
     environment:
@@ -41,7 +41,7 @@ services:
     restart: on-failure
 
   jmeter:
-    image: hub.docker.com/clintsharp/jmeter:latest
+    image: clintsharp/jmeter:latest
     environment:
       WORDPRESS_HOST: wordpress
       WORDPRESS_PORT: 80
